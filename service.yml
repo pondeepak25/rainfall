@@ -1,0 +1,68 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: rainfall
+  namespace: default
+  uid: 01ef64e3-6f78-46f4-baa6-b99517121411
+  resourceVersion: '5373'
+  creationTimestamp: '2022-08-08T02:55:33Z'
+  labels:
+    app: rainfall
+  managedFields:
+    - manager: kubectl-expose
+      operation: Update
+      apiVersion: v1
+      time: '2022-08-08T02:55:33Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app: {}
+        f:spec:
+          f:allocateLoadBalancerNodePorts: {}
+          f:externalTrafficPolicy: {}
+          f:internalTrafficPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":8080,"protocol":"TCP"}:
+              .: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:selector: {}
+          f:sessionAffinity: {}
+          f:type: {}
+    - manager: minikube.exe
+      operation: Update
+      apiVersion: v1
+      time: '2022-08-08T03:55:37Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:loadBalancer:
+            f:ingress: {}
+      subresource: status
+spec:
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 31210
+  selector:
+    app: rainfall
+  clusterIP: 10.111.149.98
+  clusterIPs:
+    - 10.111.149.98
+  type: LoadBalancer
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster
+  ipFamilies:
+    - IPv4
+  ipFamilyPolicy: SingleStack
+  allocateLoadBalancerNodePorts: true
+  internalTrafficPolicy: Cluster
+status:
+  loadBalancer:
+    ingress:
+      - ip: 10.111.149.98
